@@ -10,9 +10,9 @@ namespace MvcCorePersonajesAWSLabs.Services
         private string UrlApi;
         private MediaTypeWithQualityHeaderValue Header;
 
-        public ServiceApiPersonajes(IConfiguration configuration)
+        public ServiceApiPersonajes(KeysModel model)
         {
-            this.UrlApi = configuration.GetValue<string>("AWS:ApiPersonajes");
+            this.UrlApi = model.ApiPersonajes;
             this.Header =
 new MediaTypeWithQualityHeaderValue("application/json");
         }

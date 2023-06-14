@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<MvcCorePersonajesAWSLabs.Models.Personaje>
-@inject IConfiguration configuration;
+@inject KeysModel model;
 
 @{
     ViewData["Title"] = "Index";
-    string urlBucket = configuration.GetValue<string>("AWS:S3BucketUrl");
+    string urlBucket = model.S3BucketUrl;
 }
 
 <h1>Index</h1>

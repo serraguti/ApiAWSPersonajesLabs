@@ -1,8 +1,13 @@
 using Amazon.S3;
+using MvcCorePersonajesAWSLabs.Helpers;
+using MvcCorePersonajesAWSLabs.Models;
 using MvcCorePersonajesAWSLabs.Services;
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
-
+string secret = await HelperSecretManager.GetSecretsAsync();
+KeysModel model = JsonConvert.DeserializeObject<KeysModel>(secret);
+builder.Services.AddTransient<KeysModel>(x => model);
 // Add services to the container.
 builder.Services.AddTransient<ServiceApiPersonajes>();
 builder.Services.AddTransient<ServiceStorageS3>();

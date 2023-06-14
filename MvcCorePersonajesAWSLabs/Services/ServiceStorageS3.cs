@@ -1,5 +1,6 @@
 ﻿using Amazon.S3.Model;
 using Amazon.S3;
+using MvcCorePersonajesAWSLabs.Models;
 
 namespace MvcCorePersonajesAWSLabs.Services
 {
@@ -8,11 +9,10 @@ namespace MvcCorePersonajesAWSLabs.Services
         private string BucketName;
 
         private IAmazonS3 ClientS3;
-        public ServiceStorageS3(IConfiguration configuration
+        public ServiceStorageS3(KeysModel model
             , IAmazonS3 clientS3)
         {
-            this.BucketName = configuration.GetValue<string>
-                ("AWS:S3BucketName");
+            this.BucketName = model.S3BucketName;
             this.ClientS3 = clientS3;
         }
 
