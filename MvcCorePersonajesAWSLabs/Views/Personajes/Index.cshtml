@@ -1,0 +1,25 @@
+﻿@model IEnumerable<MvcCorePersonajesAWSLabs.Models.Personaje>
+@inject IConfiguration configuration;
+
+@{
+    ViewData["Title"] = "Index";
+    string urlBucket = configuration.GetValue<string>("AWS:S3BucketUrl");
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@foreach (var item in Model) {
+        <div class="card" style="width: 18rem;">
+  <img src="@urlBucket@item.Imagen" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">@item.Nombre</h5>
+    <a asp-controller="Personajes" asp-action="Details"
+    asp-route-id="@item.IdPersonaje"
+    class="btn btn-primary">Details</a>
+  </div>
+</div>
+}
+
