@@ -1,0 +1,14 @@
+#!/bin/bash
+sudo su
+yum update -y
+yum install httpd -y
+yum install git -y
+sudo rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
+sudo yum install dotnet-sdk-6.0 -y
+sudo yum install dotnet-runtime-6.0 -y
+sudo yum install libunwind -y
+sudo yum install mod_ssl -y
+systemctl start httpd
+systemctl enable httpd
+sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 5000
+sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 5001
